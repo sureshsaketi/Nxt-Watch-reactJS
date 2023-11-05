@@ -11,6 +11,8 @@ import {IoMdClose} from 'react-icons/io'
 
 import NavigationList from '../NavigationList'
 
+import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+
 import {
   Navbar,
   LogoContainer,
@@ -31,117 +33,128 @@ import {
   LinkItem,
 } from './styledComponents'
 
-const Header = props => {
-  const onConfirmLogout = () => {
-    const {history} = props
-    Cookies.remove('jwt_token')
-    history.replace('/login')
-  }
+const Header = props => (
+  <ThemeAndVideoContext.Consumer>
+    {value => {
+      const {changeTab} = value
 
-  const renderLogoutPopup = () => close => (
-    <LogoutButtonsContainer>
-      <LogoutText>Are you sure you want to logout?</LogoutText>
-      <ButtonsContainer>
-        <CancelButton
-          type="button"
-          onClick={() => close()}
-          data-testid="confirm"
-        >
-          Cancel
-        </CancelButton>
-        <ConfirmButton onClick={onConfirmLogout}>Confirm</ConfirmButton>
-      </ButtonsContainer>
-    </LogoutButtonsContainer>
-  )
+      const changeTabToHome = () => {
+        changeTab('Home')
+      }
 
-  const renderNavItemsMobileView = () => (
-    <NavItemsMobileContainer>
-      <NavItem>
-        <FaMoon />
-      </NavItem>
-      <NavItem>
-        <Popup
-          modal
-          trigger={
-            <HamburgerMenuButton
+      const onConfirmLogout = () => {
+        const {history} = props
+        Cookies.remove('jwt_token')
+        history.replace('/login')
+      }
+
+      const renderLogoutPopup = () => close => (
+        <LogoutButtonsContainer>
+          <LogoutText>Are you sure you want to logout?</LogoutText>
+          <ButtonsContainer>
+            <CancelButton
               type="button"
-              data-testid="hamburgerIconButton"
+              onClick={() => close()}
+              data-testid="confirm"
             >
-              <GiHamburgerMenu size="25" />
-            </HamburgerMenuButton>
-          }
-        >
-          {close => (
-            <>
-              <PopupContainer>
-                <CloseButton
+              Cancel
+            </CancelButton>
+            <ConfirmButton onClick={onConfirmLogout}>Confirm</ConfirmButton>
+          </ButtonsContainer>
+        </LogoutButtonsContainer>
+      )
+
+      const renderNavItemsMobileView = () => (
+        <NavItemsMobileContainer>
+          <NavItem>
+            <FaMoon />
+          </NavItem>
+          <NavItem>
+            <Popup
+              modal
+              trigger={
+                <HamburgerMenuButton
                   type="button"
-                  className="close-button"
-                  onClick={() => close()}
-                  data-testid="closeButton"
+                  data-testid="hamburgerIconButton"
                 >
-                  <IoMdClose size="25" />
-                </CloseButton>
-                <NavigationList />
-              </PopupContainer>
-            </>
-          )}
-        </Popup>
-      </NavItem>
-      <NavItem>
-        <Popup
-          modal
-          trigger={
-            <HamburgerMenuButton
-              type="button"
-              className="hamburger-icon-button"
-              data-testid="hamburgerIconButton"
+                  <GiHamburgerMenu size="25" />
+                </HamburgerMenuButton>
+              }
             >
-              <FiLogOut size="24" />
-            </HamburgerMenuButton>
-          }
-        >
-          {renderLogoutPopup()}
-        </Popup>
-      </NavItem>
-    </NavItemsMobileContainer>
-  )
+              {close => (
+                <>
+                  <PopupContainer>
+                    <CloseButton
+                      type="button"
+                      className="close-button"
+                      onClick={() => close()}
+                      data-testid="closeButton"
+                    >
+                      <IoMdClose size="25" />
+                    </CloseButton>
+                    <NavigationList />
+                  </PopupContainer>
+                </>
+              )}
+            </Popup>
+          </NavItem>
+          <NavItem>
+            <Popup
+              modal
+              trigger={
+                <HamburgerMenuButton
+                  type="button"
+                  data-testid="hamburgerIconButton"
+                >
+                  <FiLogOut size="24" />
+                </HamburgerMenuButton>
+              }
+            >
+              {renderLogoutPopup()}
+            </Popup>
+          </NavItem>
+        </NavItemsMobileContainer>
+      )
 
-  const renderNavItemsLargeView = () => (
-    <NavItemsLargeContainer>
-      <NavItem>
-        <FaMoon />
-      </NavItem>
-      <NavItem>
-        <ProfileImage
-          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
-          alt="profile"
-        />
-      </NavItem>
-      <NavItem>
-        <Popup
-          modal
-          trigger={<LogoutButton type="button">Logout</LogoutButton>}
-        >
-          {renderLogoutPopup()}
-        </Popup>
-      </NavItem>
-    </NavItemsLargeContainer>
-  )
+      const renderNavItemsLargeView = () => (
+        <NavItemsLargeContainer>
+          <NavItem>
+            <FaMoon />
+          </NavItem>
+          <NavItem>
+            <ProfileImage
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
+              alt="profile"
+            />
+          </NavItem>
+          <NavItem>
+            <Popup
+              modal
+              trigger={<LogoutButton type="button">Logout</LogoutButton>}
+            >
+              {renderLogoutPopup()}
+            </Popup>
+          </NavItem>
+        </NavItemsLargeContainer>
+      )
 
-  return (
-    <Navbar>
-      <LogoContainer>
-        <LinkItem to="/">
-          <LogoImage
-            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-            alt="website logo"
-          />
-        </LinkItem>
-      </LogoContainer>
-      {renderNavItemsMobileView()}
-      {renderNavItemsLargeView()}
-    </Navbar>
-  )
-}
+      return (
+        <Navbar>
+          <LogoContainer>
+            <LinkItem to="/">
+              <LogoImage
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                alt="website logo"
+                onClick={changeTabToHome}
+              />
+            </LinkItem>
+          </LogoContainer>
+          {renderNavItemsMobileView()}
+          {renderNavItemsLargeView()}
+        </Navbar>
+      )
+    }}
+  </ThemeAndVideoContext.Consumer>
+)
+
 export default withRouter(Header)

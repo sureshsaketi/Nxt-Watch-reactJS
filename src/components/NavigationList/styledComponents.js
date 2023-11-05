@@ -9,6 +9,7 @@ export const MenuItemsListContainer = styled.ul`
   flex-grow: 1;
   width: 100%;
   justify-content: center;
+  background-color: ${props => props.bgColor};
   @media screen and (min-width: 768px) {
     justify-content: flex-start;
     margin-top: 20px;

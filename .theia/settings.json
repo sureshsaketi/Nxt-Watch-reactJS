@@ -1,0 +1,4 @@
+{
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+    "rest-client.fontFamily": "'Cascadia'"
+}

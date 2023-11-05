@@ -5,6 +5,8 @@ import ReactPlayer from 'react-player'
 import {BsDot} from 'react-icons/bs'
 import {BiLike, BiDislike, BiListPlus} from 'react-icons/bi'
 
+import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+
 import {
   VideoPlayerContainer,
   ReactPlayerContainer,
@@ -34,69 +36,93 @@ const PlayVideoView = props => {
     onClickDislike()
   }
 
-  const {
-    name,
-    profileImageUrl,
-    subscriberCount,
-    description,
-    id,
-    publishedAt,
-    title,
-    videoUrl,
-    viewCount,
-  } = videoDetails
-
-  //   const publishedTime = formatDistanceToNow(new Date(publishedAt))
-  //     .split(' ')
-  //     .slice(1)
-  //     .join(' ')
-
   return (
-    <VideoPlayerContainer>
-      <ReactPlayerContainer>
-        <ReactPlayer url={videoUrl} controls width="100%" />
-        <VideoDetailsContainer>
-          <PlayVideoTitle>{title}</PlayVideoTitle>
+    <ThemeAndVideoContext.Consumer>
+      {value => {
+        const {addVideo, isDarkTheme, savedVideos} = value
+        const textColor = isDarkTheme ? '#64748b' : '#231f20'
 
-          <ViewsAndButtonsContainer>
-            <ViewsContainer>
-              <ViewsText>{viewCount} views</ViewsText>
-              <BsDot color="#616e7c" size={25} />
-              <ViewsText>{publishedAt} ago</ViewsText>
-            </ViewsContainer>
+        let isSaved
+        const index = savedVideos.findIndex(
+          eachVideo => eachVideo.id === videoDetails.id,
+        )
 
-            <ButtonsContainer>
-              <LikeButton
-                type="button"
-                onClick={onClickLikeButton}
-                color={like ? '#00306e' : null}
-              >
-                <BiLike size={25} /> Like
-              </LikeButton>
-              <LikeButton
-                type="button"
-                onClick={onClickDislikeButton}
-                color={dislike ? '#00306e' : null}
-              >
-                <BiDislike size={25} /> Dislike
-              </LikeButton>
-              <LikeButton type="button">
-                <BiListPlus size={25} /> Save
-              </LikeButton>
-            </ButtonsContainer>
-          </ViewsAndButtonsContainer>
-          <HorizontalLine />
-          <ChannelContainer>
-            <ChannelImage src={profileImageUrl} alt="channel" />
-            <ChannelNameContainer>
-              <ChannelName>{name}</ChannelName>
-              <ViewsText>{subscriberCount} subscribers</ViewsText>
-            </ChannelNameContainer>
-          </ChannelContainer>
-          <DescriptionText>{description}</DescriptionText>
-        </VideoDetailsContainer>
-      </ReactPlayerContainer>
-    </VideoPlayerContainer>
+        if (index === -1) {
+          isSaved = false
+        } else {
+          isSaved = true
+        }
+        const saveIconColor = isSaved ? '#2563eb' : textColor
+        const {
+          name,
+          profileImageUrl,
+          subscriberCount,
+          description,
+
+          publishedAt,
+          title,
+          videoUrl,
+          viewCount,
+        } = videoDetails
+
+        //   const publishedTime = formatDistanceToNow(new Date(publishedAt))
+        //     .split(' ')
+        //     .slice(1)
+        //     .join(' ')
+
+        const saveVideo = () => {
+          addVideo(videoDetails)
+        }
+
+        return (
+          <VideoPlayerContainer>
+            <ReactPlayerContainer>
+              <ReactPlayer url={videoUrl} controls width="100%" />
+              <VideoDetailsContainer>
+                <PlayVideoTitle>{title}</PlayVideoTitle>
+
+                <ViewsAndButtonsContainer>
+                  <ViewsContainer>
+                    <ViewsText>{viewCount} views</ViewsText>
+                    <BsDot color="#616e7c" size={25} />
+                    <ViewsText>{publishedAt} ago</ViewsText>
+                  </ViewsContainer>
+
+                  <ButtonsContainer>
+                    <LikeButton
+                      type="button"
+                      onClick={onClickLikeButton}
+                      color={like ? '#2563eb' : null}
+                    >
+                      <BiLike size={25} /> Like
+                    </LikeButton>
+                    <LikeButton
+                      type="button"
+                      onClick={onClickDislikeButton}
+                      color={dislike ? '#2563eb' : null}
+                    >
+                      <BiDislike size={25} /> Dislike
+                    </LikeButton>
+                    <LikeButton type="button" onClick={saveVideo}>
+                      <BiListPlus size={25} color={saveIconColor} /> Save
+                    </LikeButton>
+                  </ButtonsContainer>
+                </ViewsAndButtonsContainer>
+                <HorizontalLine />
+                <ChannelContainer>
+                  <ChannelImage src={profileImageUrl} alt="channel" />
+                  <ChannelNameContainer>
+                    <ChannelName>{name}</ChannelName>
+                    <ViewsText>{subscriberCount} subscribers</ViewsText>
+                  </ChannelNameContainer>
+                </ChannelContainer>
+                <DescriptionText>{description}</DescriptionText>
+              </VideoDetailsContainer>
+            </ReactPlayerContainer>
+          </VideoPlayerContainer>
+        )
+      }}
+    </ThemeAndVideoContext.Consumer>
   )
 }
 export default PlayVideoView

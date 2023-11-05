@@ -13,21 +13,22 @@ export const BannerAndSearchBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  overflow-y: scroll;
+
   box-sizing: border-box;
   @media screen and (min-width: 576px) {
+    overflow-y: scroll;
     margin: 20px;
-  }
-  &::-webkit-scrollbar {
-    width: 10px; /* Width of the scrollbar */
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #888; /* Color of the thumb */
-    border-radius: 5px; /* Roundness of the thumb */
-  }
+    &::-webkit-scrollbar {
+      width: 10px; /* Width of the scrollbar */
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #888; /* Color of the thumb */
+      border-radius: 5px; /* Roundness of the thumb */
+    }
 
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Color of the track */
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1; /* Color of the track */
+    }
   }
 `
 

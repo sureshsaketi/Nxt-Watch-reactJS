@@ -24,7 +24,6 @@ import {
   SearchBarContainer,
   SearchInput,
   SearchButton,
-  VideosLoaderContainer,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -170,7 +169,7 @@ class Home extends Component {
     return (
       <HomePageContainer>
         <Header />
-        <HomeContainer>
+        <HomeContainer data-testid="home">
           <NavigationBar />
           <BannerAndSearchBarContainer>
             {this.renderBannerSection()}

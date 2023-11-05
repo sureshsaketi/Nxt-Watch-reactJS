@@ -19,7 +19,6 @@ const HomeVideos = props => {
 
   return videosCount > 0 ? (
     <HomeVideosContainer>
-      <VideoCard video={videosList[0]} />
       {videosList.map(eachVideo => (
         <VideoCard key={eachVideo.id} video={eachVideo} />
       ))}

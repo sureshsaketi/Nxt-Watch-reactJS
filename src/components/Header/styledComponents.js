@@ -24,7 +24,6 @@ export const NavItemsMobileContainer = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
-
   gap: 20px;
   @media screen and (min-width: 768px) {
     display: none;
