@@ -1,13 +1,23 @@
 import styled from 'styled-components'
 
+export const TrendingPageContainer = styled.div`
+  height: 100vh;
+  overflow-y: auto;
+`
+
 export const TrendingVideosPageContainer = styled.div`
+  height: 86.5vh;
   display: flex;
   flex-direction: column;
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }
 `
-export const TrendingVideosContainer = styled.div``
+export const TrendingVideosContainer = styled.div`
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: scroll;
+`
 
 export const TrendingTop = styled.div`
   display: flex;
@@ -16,6 +26,14 @@ export const TrendingTop = styled.div`
   padding: 20px;
   background-color: #ebebeb;
   height: 75px;
+`
+
+export const TrendingVideoCardsContainer = styled.ul`
+  list-style: none;
+
+  @media screen and (min-width: 575px) {
+    padding: 15px;
+  }
 `
 
 export const TrendingImageContainer = styled.div`

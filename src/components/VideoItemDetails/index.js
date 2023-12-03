@@ -1,16 +1,13 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import Loader from 'react-loader-spinner'
 
 import Header from '../Header'
 import NavigationBar from '../NavigationBar'
 import PlayVideoView from '../PlayVideoView'
 import FailureView from '../FailureView'
+import LoaderView from '../LoaderView'
 
-import {
-  VideoItemDetailsContainer,
-  VideosLoaderContainer,
-} from './styledComponents'
+import {VideoItemDetailsContainer} from './styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -94,11 +91,7 @@ class VideoItemDetails extends Component {
 
   renderVideoDetailsFailureView = () => <FailureView onRetry={this.onRetry} />
 
-  renderLoaderView = () => (
-    <VideosLoaderContainer data-testid="loader">
-      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
-    </VideosLoaderContainer>
-  )
+  renderLoaderView = () => <LoaderView />
 
   renderPlayVideoView = () => {
     const {videoDetails, isLiked, isDisliked} = this.state
@@ -117,19 +110,16 @@ class VideoItemDetails extends Component {
 
   renderVideoDetailsView = () => {
     const {apiStatus} = this.state
-    return this.renderPlayVideoView()
-    // return this.renderLoaderView()
-    // return this.renderVideoDetailsFailureView()
-    // switch (apiStatus) {
-    //   case apiStatusConstants.success:
-    //     return this.renderVideoDetailsSuccessView()
-    //   case apiStatusConstants.failure:
-    //     return this.renderVideoDetailsFailureView()
-    //   case apiStatusConstants.inProgress:
-    //     return this.renderLoaderView()
-    //   default:
-    //     return null
-    // }
+    switch (apiStatus) {
+      case apiStatusConstants.success:
+        return this.renderPlayVideoView()
+      case apiStatusConstants.failure:
+        return this.renderVideoDetailsFailureView()
+      case apiStatusConstants.inProgress:
+        return this.renderLoaderView()
+      default:
+        return null
+    }
   }
 
   render() {

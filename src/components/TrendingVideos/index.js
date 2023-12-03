@@ -7,9 +7,12 @@ import Header from '../Header'
 import NavigationBar from '../NavigationBar'
 import FailureView from '../FailureView'
 import LoaderView from '../LoaderView'
+import TrendingVideoCard from '../TrendingVideoCard'
 
 import {
+  TrendingPageContainer,
   TrendingVideosPageContainer,
+  TrendingVideoCardsContainer,
   TrendingVideosContainer,
   TrendingTop,
   TrendingImageContainer,
@@ -85,16 +88,38 @@ class TrendingVideos extends Component {
 
   renderLoaderView = () => <LoaderView />
 
+  renderTrendingVideoCards = () => {
+    const {trendingVideosList} = this.state
+    return (
+      <TrendingVideoCardsContainer>
+        {trendingVideosList.map(eachVideo => (
+          <li key={eachVideo.id}>
+            <TrendingVideoCard video={eachVideo} />
+          </li>
+        ))}
+      </TrendingVideoCardsContainer>
+    )
+  }
+
   renderTrendingVideosView = () => {
     const {apiStatus} = this.state
+    // console.log(trendingVideosList)
 
-    // return this.renderFailureView()
-    return this.renderLoaderView()
+    switch (apiStatus) {
+      case apiStatusConstants.inProgress:
+        return this.renderLoaderView()
+      case apiStatusConstants.success:
+        return this.renderTrendingVideoCards()
+      case apiStatusConstants.failure:
+        return this.renderFailureView()
+      default:
+        return null
+    }
   }
 
   render() {
     return (
-      <>
+      <TrendingPageContainer>
         <Header />
         <TrendingVideosPageContainer>
           <NavigationBar />
@@ -103,7 +128,7 @@ class TrendingVideos extends Component {
             {this.renderTrendingVideosView()}
           </TrendingVideosContainer>
         </TrendingVideosPageContainer>
-      </>
+      </TrendingPageContainer>
     )
   }
 }
