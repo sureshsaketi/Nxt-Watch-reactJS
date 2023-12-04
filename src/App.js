@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 import ThemeAndVideoContext from './context/ThemeAndVideoContext'
 
 import LoginForm from './components/LoginForm'
@@ -7,6 +7,7 @@ import Home from './components/Home'
 import TrendingVideos from './components/TrendingVideos'
 import GamingVideos from './components/GamingVideos'
 import SavedVideos from './components/SavedVideos'
+import NotFound from './components/NotFound'
 
 import VideoItemDetails from './components/VideoItemDetails'
 
@@ -80,6 +81,8 @@ class App extends Component {
             path="/videos/:id"
             component={VideoItemDetails}
           />
+          <Route path="/not-found" component={NotFound} />
+          <Redirect to="not-found" />
         </Switch>
       </ThemeAndVideoContext.Provider>
     )
