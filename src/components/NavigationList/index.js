@@ -16,7 +16,7 @@ const NavigationList = () => (
   <ThemeAndVideoContext.Consumer>
     {value => {
       const {activeTab, changeTab, isDarkTheme} = value
-      const bgColor = isDarkTheme ? '#181818' : '#ffffff'
+      const bgColor = isDarkTheme ? '#212121' : '#ffffff'
       const textColor = isDarkTheme ? '#f9f9f9' : '#181818'
       const activeTabBg = isDarkTheme ? '#383838' : '#cbd5e1'
 

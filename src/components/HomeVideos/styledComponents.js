@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const HomeVideosContainer = styled.ul`
-  padding: 0;
+  padding-left: 15px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;

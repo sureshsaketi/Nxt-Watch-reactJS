@@ -18,8 +18,26 @@ import './App.css'
 class App extends Component {
   state = {activeTab: 'Home', isDarkTheme: false, savedVideos: []}
 
+  componentDidMount() {
+    // this.setThemeInLocalStorage()
+    this.getThemeFromLocalStorage()
+  }
+
+  getThemeFromLocalStorage = () => {
+    const theme = localStorage.getItem('isDarkTheme')
+    this.setState({isDarkTheme: JSON.parse(theme)})
+  }
+
+  //   setThemeInLocalStorage = () => {
+  //     const {isDarkTheme} = this.state
+  //     const theme = JSON.stringify(isDarkTheme)
+  //     localStorage.setItem('isDarkTheme', theme)
+  //   }
+
   toggleTheme = () => {
-    this.setState(prevState => ({isDarkTheme: !prevState.isDarkTheme}))
+    const theme = localStorage.getItem('isDarkTheme')
+    localStorage.setItem('isDarkTheme', JSON.stringify(!JSON.parse(theme)))
+    this.setState({isDarkTheme: !JSON.parse(theme)})
   }
 
   changeTab = tabName => {
@@ -39,7 +57,7 @@ class App extends Component {
 
   render() {
     const {activeTab, isDarkTheme, savedVideos} = this.state
-    console.log(savedVideos)
+    console.log(isDarkTheme)
     return (
       <ThemeAndVideoContext.Provider
         value={{

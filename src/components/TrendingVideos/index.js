@@ -9,6 +9,8 @@ import FailureView from '../FailureView'
 import LoaderView from '../LoaderView'
 import TrendingVideoCard from '../TrendingVideoCard'
 
+import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+
 import {
   TrendingPageContainer,
   TrendingVideosPageContainer,
@@ -75,33 +77,39 @@ class TrendingVideos extends Component {
     this.getTrendingVideos()
   }
 
-  renderTrendingTopView = () => (
-    <TrendingTop>
-      <TrendingImageContainer>
-        <HiFire size="24px" color="#ff0000" />
-      </TrendingImageContainer>
-      <TrendingHeading>Trending</TrendingHeading>
-    </TrendingTop>
-  )
+  renderTrendingTopView = isDarkTheme => {
+    const bgColor = isDarkTheme ? '#181818' : '#ebebeb'
+
+    return (
+      <TrendingTop bgColor={bgColor}>
+        <TrendingImageContainer bgColor={isDarkTheme ? '#0f0f0f' : '#e2e8f0'}>
+          <HiFire size="24px" color="#ff0000" />
+        </TrendingImageContainer>
+        <TrendingHeading textColor={isDarkTheme ? '#ffffff' : '#1e293b'}>
+          Trending
+        </TrendingHeading>
+      </TrendingTop>
+    )
+  }
 
   renderFailureView = () => <FailureView onRetry={this.onRetry} />
 
   renderLoaderView = () => <LoaderView />
 
-  renderTrendingVideoCards = () => {
+  renderTrendingVideoCards = isDarkTheme => {
     const {trendingVideosList} = this.state
     return (
-      <TrendingVideoCardsContainer>
+      <TrendingVideoCardsContainer
+        bgColor={isDarkTheme ? '#0f0f0f' : '#f1f5f9'}
+      >
         {trendingVideosList.map(eachVideo => (
-          <li key={eachVideo.id}>
-            <TrendingVideoCard video={eachVideo} />
-          </li>
+          <TrendingVideoCard video={eachVideo} key={eachVideo.id} />
         ))}
       </TrendingVideoCardsContainer>
     )
   }
 
-  renderTrendingVideosView = () => {
+  renderTrendingVideosView = isDarkTheme => {
     const {apiStatus} = this.state
     // console.log(trendingVideosList)
 
@@ -109,7 +117,7 @@ class TrendingVideos extends Component {
       case apiStatusConstants.inProgress:
         return this.renderLoaderView()
       case apiStatusConstants.success:
-        return this.renderTrendingVideoCards()
+        return this.renderTrendingVideoCards(isDarkTheme)
       case apiStatusConstants.failure:
         return this.renderFailureView()
       default:
@@ -119,16 +127,27 @@ class TrendingVideos extends Component {
 
   render() {
     return (
-      <TrendingPageContainer>
-        <Header />
-        <TrendingVideosPageContainer>
-          <NavigationBar />
-          <TrendingVideosContainer>
-            {this.renderTrendingTopView()}
-            {this.renderTrendingVideosView()}
-          </TrendingVideosContainer>
-        </TrendingVideosPageContainer>
-      </TrendingPageContainer>
+      <ThemeAndVideoContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          const bgColor = isDarkTheme ? '#212121' : '#f9f9f9'
+
+          return (
+            <TrendingPageContainer bgColor={bgColor}>
+              <Header />
+              <TrendingVideosPageContainer
+                bgColor={isDarkTheme ? '#181818' : null}
+              >
+                <NavigationBar />
+                <TrendingVideosContainer>
+                  {this.renderTrendingTopView(isDarkTheme)}
+                  {this.renderTrendingVideosView(isDarkTheme)}
+                </TrendingVideosContainer>
+              </TrendingVideosPageContainer>
+            </TrendingPageContainer>
+          )
+        }}
+      </ThemeAndVideoContext.Consumer>
     )
   }
 }

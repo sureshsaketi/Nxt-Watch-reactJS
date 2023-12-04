@@ -6,6 +6,7 @@ export const Navbar = styled.nav`
   padding: 10px 15px;
   display: flex;
   align-items: center;
+  background-color: ${props => props.bgColor};
   justify-content: space-between;
   @media screen and (min-width: 768px) {
     width: 95%;
@@ -74,7 +75,7 @@ export const PopupContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
+  background-color: ${props => props.bgColor};
 `
 export const CloseButton = styled.button`
   border: none;
@@ -87,7 +88,7 @@ export const CloseButton = styled.button`
   margin-top: 40px;
 `
 export const LogoutButtonsContainer = styled.div`
-  background-color: #f8fafc;
+  background-color: ${props => props.bgColor};
   padding: 20px;
   border-radius: 8px;
   display: flex;
@@ -98,7 +99,7 @@ export const LogoutButtonsContainer = styled.div`
   gap: 35px;
 `
 export const LogoutText = styled.p`
-  color: #00306e;
+  color: ${props => props.color};
   font-family: 'Roboto';
   font-weight: 500;
   text-align: center;

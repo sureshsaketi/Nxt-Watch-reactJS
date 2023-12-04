@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const NavigationBarContainer = styled.div`
   width: 200px;
+  background-color: ${props => props.bgColor};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,7 +16,7 @@ export const ContactUsContainer = styled.div`
   padding-left: 10%;
 `
 export const ContactUsHeading = styled.h1`
-  color: #475569;
+  color: ${props => props.textColor};
   font-family: 'Roboto';
   text-transform: uppercase;
   margin-bottom: 20px;
@@ -38,7 +39,7 @@ export const SocialMediaImage = styled.img`
   width: 30px;
 `
 export const ContactUsText = styled.p`
-  color: #475569;
+  color: ${props => props.textColor};
   font-weight: 500;
   font-family: 'Roboto';
   font-size: 14px;

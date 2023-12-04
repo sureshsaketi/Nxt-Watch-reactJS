@@ -19,6 +19,7 @@ import {
   GameVideoLink,
   GamingListItem,
 } from './styledComponents'
+import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -65,24 +66,30 @@ class GamingVideos extends Component {
     }
   }
 
-  renderGamingTopView = () => (
-    <GamingTop>
-      <GamingImageContainer>
-        <SiYoutubegaming size="24px" color="#ff0b37" />
-      </GamingImageContainer>
-      <GamingHeading>Gaming</GamingHeading>
-    </GamingTop>
-  )
+  renderGamingTopView = isDarkTheme => {
+    const bgColor = isDarkTheme ? '#181818' : '#ebebeb'
+
+    return (
+      <GamingTop bgColor={bgColor}>
+        <GamingImageContainer bgColor={isDarkTheme ? '#0f0f0f' : '#e2e8f0'}>
+          <SiYoutubegaming size="24px" color="#ff0b37" />
+        </GamingImageContainer>
+        <GamingHeading textColor={isDarkTheme ? '#ffffff' : '#1e293b'}>
+          Gaming
+        </GamingHeading>
+      </GamingTop>
+    )
+  }
 
   renderFailureView = () => <FailureView onRetry={this.onRetry} />
 
   renderLoaderView = () => <LoaderView />
 
-  renderGamingVideos = () => {
+  renderGamingVideos = isDarkTheme => {
     const {gamingVideosList} = this.state
 
     return (
-      <GamingVideoCardsContainer>
+      <GamingVideoCardsContainer bgColor={isDarkTheme ? '#0f0f0f' : '#f1f5f9'}>
         {gamingVideosList.map(eachVideo => (
           <GameVideoLink to={`/videos/${eachVideo.id}`}>
             <GamingListItem key={eachVideo.id}>
@@ -94,14 +101,14 @@ class GamingVideos extends Component {
     )
   }
 
-  renderGamingVideosView = () => {
+  renderGamingVideosView = isDarkTheme => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstants.failure:
         return this.renderFailureView()
       case apiStatusConstants.success:
-        return this.renderGamingVideos()
+        return this.renderGamingVideos(isDarkTheme)
       case apiStatusConstants.inProgress:
         return this.renderLoaderView()
       default:
@@ -110,19 +117,26 @@ class GamingVideos extends Component {
   }
 
   render() {
-    const {gamingVideosList} = this.state
-    // console.log(gamingVideosList)
     return (
-      <GamingPage>
-        <Header />
-        <GamingVideosPageContainer>
-          <NavigationBar />
-          <GamingVideosContainer>
-            {this.renderGamingTopView()}
-            {this.renderGamingVideosView()}
-          </GamingVideosContainer>
-        </GamingVideosPageContainer>
-      </GamingPage>
+      <ThemeAndVideoContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          const bgColor = isDarkTheme ? '#212121' : '#f9f9f9'
+
+          return (
+            <GamingPage bgColor={bgColor}>
+              <Header />
+              <GamingVideosPageContainer>
+                <NavigationBar />
+                <GamingVideosContainer>
+                  {this.renderGamingTopView(isDarkTheme)}
+                  {this.renderGamingVideosView(isDarkTheme)}
+                </GamingVideosContainer>
+              </GamingVideosPageContainer>
+            </GamingPage>
+          )
+        }}
+      </ThemeAndVideoContext.Consumer>
     )
   }
 }

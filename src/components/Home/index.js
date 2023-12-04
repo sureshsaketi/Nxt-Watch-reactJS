@@ -182,16 +182,18 @@ class Home extends Component {
         {value => {
           const {isDarkTheme} = value
 
-          const bgColor = isDarkTheme ? '#181818' : '#f9f9f9'
-          const textColor = isDarkTheme ? '#f9f9f9' : '#231f20'
+          const bgColor = isDarkTheme ? '#212121' : '#f9f9f9'
 
           return (
             <HomePageContainer bgColor={bgColor}>
               <Header />
-              <HomeContainer data-testid="home">
+              <HomeContainer
+                data-testid="home"
+                bgColor={isDarkTheme ? '#181818' : null}
+              >
                 <NavigationBar />
                 <BannerAndSearchBarContainer>
-                  {this.renderBannerSection()}
+                  {this.renderBannerSection(isDarkTheme)}
                   {this.renderSearchBarField(isDarkTheme)}
                   {this.renderAllVideos()}
                 </BannerAndSearchBarContainer>

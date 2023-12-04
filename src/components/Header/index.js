@@ -39,7 +39,7 @@ const Header = props => (
     {value => {
       const {changeTab, isDarkTheme, toggleTheme} = value
 
-      const bgColor = isDarkTheme ? '#181818' : '#ffffff'
+      const bgColor = isDarkTheme ? '#231f20' : '#ffffff'
       const color = isDarkTheme ? '#ffffff' : '#181818'
 
       const changeTabToHome = () => {
@@ -57,7 +57,7 @@ const Header = props => (
       }
 
       const renderLogoutPopup = () => close => (
-        <LogoutButtonsContainer bgColor={isDarkTheme ? '#181818' : '#f8fafc'}>
+        <LogoutButtonsContainer bgColor={isDarkTheme ? '#231f20' : '#f8fafc'}>
           <LogoutText color={isDarkTheme ? '#ffffff' : '#00306e'}>
             Are you sure you want to logout?
           </LogoutText>
@@ -92,7 +92,10 @@ const Header = props => (
                   data-testid="hamburgerIconButton"
                   color={color}
                 >
-                  <GiHamburgerMenu size="25" />
+                  <GiHamburgerMenu
+                    size="25"
+                    color={isDarkTheme ? '#ffffff' : null}
+                  />
                 </HamburgerMenuButton>
               }
             >
@@ -106,7 +109,10 @@ const Header = props => (
                       data-testid="closeButton"
                       color={color}
                     >
-                      <IoMdClose size="25" />
+                      <IoMdClose
+                        size="25"
+                        color={isDarkTheme ? '#ffffff' : null}
+                      />
                     </CloseButton>
                     <NavigationList />
                   </PopupContainer>
@@ -123,7 +129,7 @@ const Header = props => (
                   data-testid="hamburgerIconButton"
                   color={color}
                 >
-                  <FiLogOut size="24" />
+                  <FiLogOut size="24" color={isDarkTheme ? '#ffffff' : null} />
                 </HamburgerMenuButton>
               }
             >
@@ -167,7 +173,7 @@ const Header = props => (
       )
 
       return (
-        <Navbar bgColor>
+        <Navbar bgColor={isDarkTheme ? '#212121' : null}>
           <LogoContainer>
             <LinkItem to="/">
               <LogoImage

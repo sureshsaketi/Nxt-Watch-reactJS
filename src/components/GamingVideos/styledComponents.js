@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 export const GamingPage = styled.div`
   height: 100vh;
   overflow-y: auto;
+  background-color: ${props => props.bgColor};
 `
 export const GamingVideosPageContainer = styled.div`
   height: 86.5vh;
@@ -37,11 +38,12 @@ export const GamingTop = styled.div`
   align-items: center;
   gap: 15px;
   padding: 20px;
-  background-color: #ebebeb;
+  background-color: ${props => props.bgColor};
   height: 75px;
 `
 
 export const GamingVideoCardsContainer = styled.ul`
+  background-color: ${props => props.bgColor};
   list-style: none;
   display: flex;
   justify-content: center;
@@ -61,10 +63,10 @@ export const GamingImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e2e8f0;
+  background-color: ${props => props.bgColor};
 `
 export const GamingHeading = styled.h1`
-  color: #1e293b;
+  color: ${props => props.textColor};
   font-family: 'Roboto';
   font-size: 22px;
 `

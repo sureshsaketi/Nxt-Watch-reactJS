@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 
 export const TrendingPageContainer = styled.div`
+  background-color: ${props => props.bgColor};
   height: 100vh;
   overflow-y: auto;
 `
 
 export const TrendingVideosPageContainer = styled.div`
   height: 86.5vh;
+  background-color: ${props => props.bgColor};
   display: flex;
   flex-direction: column;
   @media screen and (min-width: 768px) {
@@ -24,13 +26,13 @@ export const TrendingTop = styled.div`
   align-items: center;
   gap: 15px;
   padding: 20px;
-  background-color: #ebebeb;
+  background-color: ${props => props.bgColor};
   height: 75px;
 `
 
 export const TrendingVideoCardsContainer = styled.ul`
   list-style: none;
-
+  background-color: ${props => props.bgColor};
   @media screen and (min-width: 575px) {
     padding: 15px;
   }
@@ -43,10 +45,10 @@ export const TrendingImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e2e8f0;
+  background-color: ${props => props.bgColor};
 `
 export const TrendingHeading = styled.h1`
-  color: #1e293b;
+  color: ${props => props.textColor};
   font-family: 'Roboto';
   font-size: 22px;
 `

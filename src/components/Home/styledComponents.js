@@ -9,16 +9,16 @@ export const HomePageContainer = styled.div`
 export const HomeContainer = styled.div`
   height: 86.5vh;
   display: flex;
+  background-color: ${props => props.bgColor};
 `
 export const BannerAndSearchBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
+  background-color: ${props => props.bgColor};
   box-sizing: border-box;
   @media screen and (min-width: 576px) {
     overflow-y: scroll;
-    margin: 20px;
     &::-webkit-scrollbar {
       width: 10px; /* Width of the scrollbar */
     }
@@ -86,6 +86,7 @@ export const BannerCrossButton = styled.button`
   align-self: flex-end;
 `
 export const SearchBarContainer = styled.div`
+  margin-left: 15px;
   background-color: ${props => props.bgColor};
   color: ${props => props.textColor};
   display: flex;
