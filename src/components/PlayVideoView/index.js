@@ -75,11 +75,13 @@ const PlayVideoView = props => {
         }
 
         return (
-          <VideoPlayerContainer>
+          <VideoPlayerContainer bgColor={isDarkTheme ? '#0f0f0f' : ' #f4f4f4'}>
             <ReactPlayerContainer>
               <ReactPlayer url={videoUrl} controls width="100%" />
               <VideoDetailsContainer>
-                <PlayVideoTitle>{title}</PlayVideoTitle>
+                <PlayVideoTitle textColor={isDarkTheme ? '#ffffff' : '#212121'}>
+                  {title}
+                </PlayVideoTitle>
 
                 <ViewsAndButtonsContainer>
                   <ViewsContainer>
@@ -112,11 +114,19 @@ const PlayVideoView = props => {
                 <ChannelContainer>
                   <ChannelImage src={profileImageUrl} alt="channel" />
                   <ChannelNameContainer>
-                    <ChannelName>{name}</ChannelName>
+                    <ChannelName
+                      textColor={isDarkTheme ? '#ffffff' : '#212121'}
+                    >
+                      {name}
+                    </ChannelName>
                     <ViewsText>{subscriberCount} subscribers</ViewsText>
                   </ChannelNameContainer>
                 </ChannelContainer>
-                <DescriptionText>{description}</DescriptionText>
+                <DescriptionText
+                  textColor={isDarkTheme ? '#ffffff' : '#64748b'}
+                >
+                  {description}
+                </DescriptionText>
               </VideoDetailsContainer>
             </ReactPlayerContainer>
           </VideoPlayerContainer>

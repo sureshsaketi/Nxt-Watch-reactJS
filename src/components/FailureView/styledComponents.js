@@ -14,7 +14,7 @@ export const FailureViewImage = styled.img`
   height: 200px;
 `
 export const FailureViewHeading = styled.h1`
-  color: #181818;
+  color: ${props => props.textColor};
   font-family: 'roboto';
   font-size: 18px;
   text-align: center;
@@ -22,7 +22,7 @@ export const FailureViewHeading = styled.h1`
 `
 
 export const FailureViewText = styled.p`
-  color: #64748b;
+  color: ${props => props.textColor};
   font-family: 'Roboto';
   text-align: center;
   font-weight: 500;

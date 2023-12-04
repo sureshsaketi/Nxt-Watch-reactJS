@@ -2,11 +2,13 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
 export const SavedVideosPage = styled.div`
+  background-color: ${props => props.bgColor};
   height: 100vh;
   overflow-y: auto;
 `
 export const SavedVideosPageContainer = styled.div`
   height: 86.5vh;
+  background-color: ${props => props.bgColor};
   display: flex;
   flex-direction: column;
   @media screen and (min-width: 768px) {
@@ -17,6 +19,7 @@ export const SavedVideosContainer = styled.div`
   width: 100%;
   flex-grow: 1;
   overflow-y: scroll;
+  background-color: ${props => props.bgColor};
   @media screen and (min-width: 575px) {
     &::-webkit-scrollbar {
       width: 10px; /* Width of the scrollbar */
@@ -33,15 +36,16 @@ export const SavedVideosContainer = styled.div`
 `
 
 export const SavedVideosTop = styled.div`
+  background-color: ${props => props.bgColor};
   display: flex;
   align-items: center;
   gap: 15px;
   padding: 20px;
-  background-color: #ebebeb;
   height: 75px;
 `
 
 export const SavedVideosCardsContainer = styled.ul`
+  background-color: ${props => props.bgColor};
   list-style: none;
   display: flex;
   justify-content: center;
@@ -55,16 +59,16 @@ export const SavedVideosCardsContainer = styled.ul`
 `
 
 export const SavedVideosImageContainer = styled.div`
+  background-color: ${props => props.bgColor};
   height: 48px;
   width: 48px;
   border-radius: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e2e8f0;
 `
 export const SavedVideosHeading = styled.h1`
-  color: #1e293b;
+  color: ${props => props.textColor};
   font-family: 'Roboto';
   font-size: 22px;
 `
@@ -90,7 +94,7 @@ export const NoSavedVideos = styled.div`
   align-items: center;
   justify-content: center;
   gap: 15px;
-  background-color: #f9f9f9;
+  background-color: ${props => props.bgColor};
 `
 
 export const NoSavedVideosImage = styled.img`
@@ -100,7 +104,7 @@ export const NoSavedVideosHeading = styled(SavedVideosHeading)`
   text-align: center;
 `
 export const NoSavedVideosText = styled.p`
-  color: #7e858e;
+  color: ${props => props.textColor};
   font-family: 'roboto';
   text-align: center;
   font-font: weight 400;

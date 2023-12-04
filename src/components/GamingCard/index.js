@@ -1,14 +1,26 @@
+import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+
 import {GamingCardImage, GameTitle, GameViewCount} from './styledComponents'
 
 const GamingCard = props => {
   const {video} = props
   const {thumbnailUrl, title, viewCount} = video
+
   return (
-    <>
-      <GamingCardImage src={thumbnailUrl} alt={title} />
-      <GameTitle>{title}</GameTitle>
-      <GameViewCount>{viewCount} Watching Worldwide</GameViewCount>
-    </>
+    <ThemeAndVideoContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        return (
+          <>
+            <GamingCardImage src={thumbnailUrl} alt={title} />
+            <GameTitle textColor={isDarkTheme ? '#ffffff' : '#181818'}>
+              {title}
+            </GameTitle>
+            <GameViewCount>{viewCount} Watching Worldwide</GameViewCount>
+          </>
+        )
+      }}
+    </ThemeAndVideoContext.Consumer>
   )
 }
 export default GamingCard

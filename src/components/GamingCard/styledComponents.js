@@ -9,8 +9,8 @@ export const GamingCardImage = styled.img`
   }
 `
 export const GameTitle = styled.p`
-  color: #181818;
-  font-family: 'roboto';
+  color: ${props => props.textColor};
+  font-family: 'Roboto';
   line-height: 0.8;
   font-size: 14px;
   font-weight: 500;

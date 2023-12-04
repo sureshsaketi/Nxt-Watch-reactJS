@@ -2,6 +2,8 @@ import {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
 
+import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+
 import './index.css'
 import {
   LoginPageContainer,
@@ -38,12 +40,18 @@ class LoginForm extends Component {
     this.setState(prevState => ({isShow: !prevState.isShow}))
   }
 
-  renderUsernameField = () => {
+  renderUsernameField = isDarkTheme => {
     const {username} = this.state
     return (
       <InputContainer>
-        <LabelElement htmlFor="username">Username</LabelElement>
+        <LabelElement
+          htmlFor="username"
+          textColor={isDarkTheme ? '#ffffff' : '#7e858e'}
+        >
+          Username
+        </LabelElement>
         <InputElement
+          textColor={isDarkTheme ? '#ffffff' : '#475569'}
           type="text"
           id="username"
           value={username}
@@ -54,12 +62,18 @@ class LoginForm extends Component {
     )
   }
 
-  renderPasswordField = () => {
+  renderPasswordField = isDarkTheme => {
     const {password, isShow} = this.state
     return (
       <InputContainer>
-        <LabelElement htmlFor="password">Password</LabelElement>
+        <LabelElement
+          htmlFor="password"
+          textColor={isDarkTheme ? '#ffffff' : '#7e858e'}
+        >
+          Password
+        </LabelElement>
         <InputElement
+          textColor={isDarkTheme ? '#ffffff' : '#475569'}
           type={isShow ? 'text' : 'password'}
           id="password"
           value={password}
@@ -70,7 +84,7 @@ class LoginForm extends Component {
     )
   }
 
-  renderShowPasswordField = () => {
+  renderShowPasswordField = isDarkTheme => {
     const {isShow} = this.state
     return (
       <CheckBoxContainer>
@@ -80,7 +94,9 @@ class LoginForm extends Component {
           value={isShow}
           onClick={this.onToggleCheckBox}
         />
-        <ShowPasswordText>Show password</ShowPasswordText>
+        <ShowPasswordText textColor={isDarkTheme ? '#ffffff' : '#181818'}>
+          Show password
+        </ShowPasswordText>
       </CheckBoxContainer>
     )
   }
@@ -122,24 +138,39 @@ class LoginForm extends Component {
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
     }
+
     return (
-      <LoginPageContainer>
-        <FormContainer onSubmit={this.submitFormCredentials}>
-          <NxtWatchImage
-            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-            alt="website logo"
-          />
+      <ThemeAndVideoContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          return (
+            <LoginPageContainer bgColor={isDarkTheme ? '#212121' : '#ffffff'}>
+              <FormContainer
+                onSubmit={this.submitFormCredentials}
+                bgColor={isDarkTheme ? '#000000' : '#ffffff'}
+              >
+                <NxtWatchImage
+                  src={
+                    isDarkTheme
+                      ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                      : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                  }
+                  alt="website logo"
+                />
 
-          {this.renderUsernameField()}
-          {this.renderPasswordField()}
-          {this.renderShowPasswordField()}
+                {this.renderUsernameField(isDarkTheme)}
+                {this.renderPasswordField(isDarkTheme)}
+                {this.renderShowPasswordField(isDarkTheme)}
 
-          <LoginButton type="submit">Login</LoginButton>
-          {showSubmitError && (
-            <ErrorMessageText>* {errorMessage}</ErrorMessageText>
-          )}
-        </FormContainer>
-      </LoginPageContainer>
+                <LoginButton type="submit">Login</LoginButton>
+                {showSubmitError && (
+                  <ErrorMessageText>* {errorMessage}</ErrorMessageText>
+                )}
+              </FormContainer>
+            </LoginPageContainer>
+          )
+        }}
+      </ThemeAndVideoContext.Consumer>
     )
   }
 }

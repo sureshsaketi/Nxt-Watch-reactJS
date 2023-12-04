@@ -35,7 +35,7 @@ export const DetailsContainer = styled.div`
 `
 
 export const TitleText = styled.p`
-  color: #0f0f0f;
+  color: ${props => props.textColor};
   font-family: 'Roboto';
   font-size: 12px;
   font-weight: 500;
@@ -46,7 +46,8 @@ export const TitleText = styled.p`
 `
 
 export const ChannelNameText = styled.p`
-  color: #7e858e;
+  color: ${props => props.textColor};
+
   font-family: 'Roboto';
   font-size: 12px;
   font-weight: 500;
@@ -56,6 +57,8 @@ export const ChannelNameText = styled.p`
   }
 `
 export const ChannelNameTextLarge = styled(ChannelNameText)`
+  color: ${props => props.textColor};
+
   @media screen and (max-width: 575px) {
     display: none;
   }
@@ -69,11 +72,15 @@ export const ViewsCountAndPublishedContainer = styled.div`
   gap: 15px;
 `
 export const ViewsCountText = styled(ChannelNameText)`
+  color: ${props => props.textColor};
   display: block;
 `
 
 export const PublishedAtText = styled(ChannelNameText)`
+  color: ${props => props.textColor};
   display: block;
+  display: flex;
+  align-items: center;
 `
 export const LinkItem = styled(Link)`
   text-decoration: none;

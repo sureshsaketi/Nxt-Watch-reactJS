@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const VideoPlayerContainer = styled.div`
   height: 86.5vh;
-  background-color: #f4f4f4;
+  background-color: ${props => props.bgColor};
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@ export const PlayVideoTitle = styled.p`
   font-size: 18px;
   font-family: 'Roboto';
   font-weight: 500;
-  color: #212121;
+  color: ${props => props.textColor};
   margin-top: 10px;
 `
 
@@ -107,13 +107,13 @@ export const ChannelNameContainer = styled.div`
   gap: 5px;
 `
 export const ChannelName = styled.p`
-  color: #212121;
+  color: ${props => props.textColor};
   font-size: 14px;
   font-family: 'Roboto';
   font-weight: 500;
 `
 export const DescriptionText = styled(ChannelName)`
-  color: #64748b;
+  color: ${props => props.textColor};
   margin-bottom: 20px;
   font-size: 15px;
 `

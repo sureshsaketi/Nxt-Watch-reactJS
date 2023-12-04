@@ -1,5 +1,9 @@
 import {formatDistanceToNow} from 'date-fns'
 
+import {BsDot} from 'react-icons/bs'
+
+import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+
 import {
   VideosListItem,
   ThumbnailImage,
@@ -33,26 +37,52 @@ const VideoCard = props => {
     .join(' ')
 
   return (
-    <LinkItem to={`/videos/${id}`}>
-      <VideosListItem>
-        <ThumbnailImage src={thumbnailUrl} alt={title} />
-        <VideoCardDetailsContainer>
-          <ProfileImageContainer>
-            <ProfileImage src={profileImageUrl} alt={name} />
-          </ProfileImageContainer>
+    <ThemeAndVideoContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        return (
+          <LinkItem to={`/videos/${id}`}>
+            <VideosListItem>
+              <ThumbnailImage src={thumbnailUrl} alt={title} />
+              <VideoCardDetailsContainer>
+                <ProfileImageContainer>
+                  <ProfileImage src={profileImageUrl} alt={name} />
+                </ProfileImageContainer>
 
-          <DetailsContainer>
-            <TitleText>{title}</TitleText>
-            <ChannelNameTextLarge>{name}</ChannelNameTextLarge>
-            <ViewsCountAndPublishedContainer>
-              <ChannelNameText>{name}</ChannelNameText>
-              <ViewsCountText>{viewCount} views</ViewsCountText>
-              <PublishedAtText>{publishedTime} ago</PublishedAtText>
-            </ViewsCountAndPublishedContainer>
-          </DetailsContainer>
-        </VideoCardDetailsContainer>
-      </VideosListItem>
-    </LinkItem>
+                <DetailsContainer>
+                  <TitleText textColor={isDarkTheme ? '#ffffff' : '#0f0f0f'}>
+                    {title}
+                  </TitleText>
+                  <ChannelNameTextLarge
+                    textColor={isDarkTheme ? '#cbd5e1' : '#7e858e'}
+                  >
+                    {name}
+                  </ChannelNameTextLarge>
+                  <ViewsCountAndPublishedContainer>
+                    <ChannelNameText
+                      textColor={isDarkTheme ? '#cbd5e1' : '#7e858e'}
+                    >
+                      {name}
+                    </ChannelNameText>
+                    <ViewsCountText
+                      textColor={isDarkTheme ? '#cbd5e1' : '#7e858e'}
+                    >
+                      {viewCount} views
+                    </ViewsCountText>
+                    <PublishedAtText
+                      textColor={isDarkTheme ? '#cbd5e1' : '#7e858e'}
+                    >
+                      <BsDot color="#616e7c" size={25} />
+                      {publishedTime} ago
+                    </PublishedAtText>
+                  </ViewsCountAndPublishedContainer>
+                </DetailsContainer>
+              </VideoCardDetailsContainer>
+            </VideosListItem>
+          </LinkItem>
+        )
+      }}
+    </ThemeAndVideoContext.Consumer>
   )
 }
 export default VideoCard

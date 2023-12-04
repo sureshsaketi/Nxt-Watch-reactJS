@@ -24,22 +24,26 @@ const SavedVideos = () => (
   <ThemeAndVideoContext.Consumer>
     {value => {
       const {isDarkTheme, savedVideos} = value
-
-      const renderSavedVideosTopView = () => (
-        <SavedVideosTop>
-          <SavedVideosImageContainer>
-            <HiFire size="24px" color="#ff0b37" />
-          </SavedVideosImageContainer>
-          <SavedVideosHeading>Saved Videos</SavedVideosHeading>
-        </SavedVideosTop>
-      )
+      const bgColor = isDarkTheme ? '#212121' : '#f9f9f9'
 
       const renderSavedVideos = () => (
-        <SavedVideosCardsContainer>
-          {savedVideos.map(eachVideo => (
-            <VideoCard key={eachVideo.id} video={eachVideo} />
-          ))}
-        </SavedVideosCardsContainer>
+        <>
+          <SavedVideosTop bgColor={isDarkTheme ? '#181818' : '#ebebeb'}>
+            <SavedVideosImageContainer
+              bgColor={isDarkTheme ? '#0f0f0f' : '#e2e8f0'}
+            >
+              <HiFire size="24px" color="#ff0b37" />
+            </SavedVideosImageContainer>
+            <SavedVideosHeading textColor={isDarkTheme ? '#ffffff' : '#1e293b'}>
+              Saved Videos
+            </SavedVideosHeading>
+          </SavedVideosTop>
+          <SavedVideosCardsContainer>
+            {savedVideos.map(eachVideo => (
+              <VideoCard key={eachVideo.id} video={eachVideo} />
+            ))}
+          </SavedVideosCardsContainer>
+        </>
       )
 
       const renderNoSavedVideos = () => (
@@ -48,20 +52,21 @@ const SavedVideos = () => (
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
             alt="no saved videos"
           />
-          <NoSavedVideosHeading>No saved videos found</NoSavedVideosHeading>
-          <NoSavedVideosText>
+          <NoSavedVideosHeading textColor={isDarkTheme ? '#ffffff' : '#1e293b'}>
+            No saved videos found
+          </NoSavedVideosHeading>
+          <NoSavedVideosText textColor={isDarkTheme ? '#ffffff' : '##7e858e'}>
             You can save your videos while you watching them
           </NoSavedVideosText>
         </NoSavedVideos>
       )
 
       return (
-        <SavedVideosPage>
+        <SavedVideosPage bgColor={bgColor}>
           <Header />
-          <SavedVideosPageContainer>
+          <SavedVideosPageContainer bgColor={isDarkTheme ? '#181818' : null}>
             <NavigationBar />
-            <SavedVideosContainer>
-              {renderSavedVideosTopView()}
+            <SavedVideosContainer bgColor={isDarkTheme ? '#0f0f0f' : null}>
               {savedVideos.length > 0
                 ? renderSavedVideos()
                 : renderNoSavedVideos()}

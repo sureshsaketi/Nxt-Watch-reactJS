@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+export const VideoItemDetailsPage = styled.div`
+  background-color: ${props => props.bgColor};
+`
+
 export const VideoItemDetailsContainer = styled.div`
   display: flex;
   flex-direction: column;

@@ -7,7 +7,12 @@ import PlayVideoView from '../PlayVideoView'
 import FailureView from '../FailureView'
 import LoaderView from '../LoaderView'
 
-import {VideoItemDetailsContainer} from './styledComponents'
+import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+
+import {
+  VideoItemDetailsPage,
+  VideoItemDetailsContainer,
+} from './styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -124,13 +129,21 @@ class VideoItemDetails extends Component {
 
   render() {
     return (
-      <>
-        <Header />
-        <VideoItemDetailsContainer>
-          <NavigationBar />
-          {this.renderVideoDetailsView()}
-        </VideoItemDetailsContainer>
-      </>
+      <ThemeAndVideoContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          const bgColor = isDarkTheme ? '#212121' : '#f9f9f9'
+          return (
+            <VideoItemDetailsPage bgColor={bgColor}>
+              <Header />
+              <VideoItemDetailsContainer>
+                <NavigationBar />
+                {this.renderVideoDetailsView()}
+              </VideoItemDetailsContainer>
+            </VideoItemDetailsPage>
+          )
+        }}
+      </ThemeAndVideoContext.Consumer>
     )
   }
 }

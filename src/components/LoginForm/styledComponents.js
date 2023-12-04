@@ -1,21 +1,22 @@
 import styled from 'styled-components'
 
 export const LoginPageContainer = styled.div`
+  background-color: ${props => props.bgColor};
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: ;
-  border-radius: 10px;
   padding: 10px;
 `
 export const FormContainer = styled.form`
+  background-color: ${props => props.bgColor};
+  border-radius: 8px;
   width: 100%;
   max-width: 350px;
   display: flex;
   flex-direction: column;
-  padding: 15px;
-  box-shadow: 0px 8px 40px 0px rgba(7, 7, 7, 0.08);
+  padding: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(7, 7, 7, 0.08);
 `
 export const NxtWatchImage = styled.img`
   height: 32px;
@@ -27,7 +28,7 @@ export const InputContainer = styled.div`
 `
 
 export const LabelElement = styled.label`
-  color: #7e858e;
+  color: ${props => props.textColor};
   font-weight: bold;
   text-transform: uppercase;
   font-family: 'roboto';
@@ -38,12 +39,13 @@ export const InputElement = styled.input`
   width: 100%;
   border-radius: 3px;
   padding-left: 8px;
-  color: #475569;
+  color: ${props => props.textColor};
   font-family: 'roboto';
-  border: 1px #cbd5e1 solid;
+  border: 1px ${props => props.borderColor} solid;
   outline: none;
   margin-top: 5px;
   font-size: 16px;
+  background-color: transparent;
 `
 export const CheckBoxContainer = styled.div`
   align-self: flex-start;
@@ -57,7 +59,7 @@ export const PasswordCheckBox = styled.input`
 `
 
 export const ShowPasswordText = styled(LabelElement)`
-  color: #181818;
+  color: ${props => props.textColor};
   font-family: 'roboto';
   font-weight: 400;
   font-size: 16px;
