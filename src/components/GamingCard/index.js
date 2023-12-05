@@ -12,7 +12,7 @@ const GamingCard = props => {
         const {isDarkTheme} = value
         return (
           <>
-            <GamingCardImage src={thumbnailUrl} alt={title} />
+            <GamingCardImage src={thumbnailUrl} alt="video thumbnail" />
             <GameTitle textColor={isDarkTheme ? '#ffffff' : '#181818'}>
               {title}
             </GameTitle>

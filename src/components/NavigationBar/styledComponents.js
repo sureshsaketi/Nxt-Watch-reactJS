@@ -15,7 +15,7 @@ export const NavigationBarContainer = styled.div`
 export const ContactUsContainer = styled.div`
   padding-left: 10%;
 `
-export const ContactUsHeading = styled.h1`
+export const ContactUsHeading = styled.p`
   color: ${props => props.textColor};
   font-family: 'Roboto';
   text-transform: uppercase;

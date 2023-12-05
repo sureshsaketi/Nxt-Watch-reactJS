@@ -37,6 +37,9 @@ class App extends Component {
 
   toggleTheme = () => {
     const theme = localStorage.getItem('isDarkTheme')
+    if (theme === null) {
+      localStorage.setItem('isDarkTheme', JSON.stringify(false))
+    }
     localStorage.setItem('isDarkTheme', JSON.stringify(!JSON.parse(theme)))
     this.setState({isDarkTheme: !JSON.parse(theme)})
   }

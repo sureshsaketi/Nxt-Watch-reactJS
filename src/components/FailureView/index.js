@@ -27,7 +27,7 @@ const FailureView = props => {
                   ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
                   : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
               }
-              alt="failure"
+              alt="failure view"
             />
             <FailureViewHeading textColor={isDarkTheme ? '#ffffff' : '#181818'}>
               Oops! Something Went Wrong

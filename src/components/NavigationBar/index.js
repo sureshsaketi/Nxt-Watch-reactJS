@@ -44,7 +44,7 @@ const NavigationBar = () => (
               <ListItem>
                 <SocialMediaImage
                   src={SocialMediaImagesList.twitter}
-                  alt="teitter logo"
+                  alt="twitter logo"
                 />
               </ListItem>
               <ListItem>

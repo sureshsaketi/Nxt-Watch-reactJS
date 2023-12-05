@@ -32,6 +32,7 @@ import {
   CancelButton,
   ConfirmButton,
   LinkItem,
+  ThemeButton,
 } from './styledComponents'
 
 const Header = props => (
@@ -59,7 +60,7 @@ const Header = props => (
       const renderLogoutPopup = () => close => (
         <LogoutButtonsContainer bgColor={isDarkTheme ? '#231f20' : '#f8fafc'}>
           <LogoutText color={isDarkTheme ? '#ffffff' : '#00306e'}>
-            Are you sure you want to logout?
+            Are you sure, you want to logout
           </LogoutText>
           <ButtonsContainer>
             <CancelButton
@@ -76,12 +77,20 @@ const Header = props => (
 
       const renderNavItemsMobileView = () => (
         <NavItemsMobileContainer>
-          <NavItem onClick={onChangeTheme}>
-            {isDarkTheme ? (
-              <IoSunnyOutline color={isDarkTheme ? '#ffffff' : null} />
-            ) : (
-              <BsMoon color={isDarkTheme ? '#ffffff' : null} />
-            )}
+          <NavItem>
+            <LinkItem to="/">
+              <ThemeButton
+                type="button"
+                onClick={onChangeTheme}
+                data-testid="theme"
+              >
+                {isDarkTheme ? (
+                  <IoSunnyOutline color={isDarkTheme ? '#ffffff' : null} />
+                ) : (
+                  <BsMoon color={isDarkTheme ? '#ffffff' : null} />
+                )}
+              </ThemeButton>
+            </LinkItem>
           </NavItem>
           <NavItem>
             <Popup
@@ -142,11 +151,13 @@ const Header = props => (
       const renderNavItemsLargeView = () => (
         <NavItemsLargeContainer>
           <NavItem onClick={onChangeTheme}>
-            {isDarkTheme ? (
-              <IoSunnyOutline color={isDarkTheme ? '#ffffff' : null} />
-            ) : (
-              <BsMoon color={isDarkTheme ? '#ffffff' : null} />
-            )}
+            <LinkItem to="/" color={isDarkTheme ? '#ffffff' : '#212121'}>
+              {isDarkTheme ? (
+                <IoSunnyOutline color={isDarkTheme ? '#ffffff' : null} />
+              ) : (
+                <BsMoon color={isDarkTheme ? '#ffffff' : null} />
+              )}
+            </LinkItem>
           </NavItem>
           <NavItem>
             <ProfileImage

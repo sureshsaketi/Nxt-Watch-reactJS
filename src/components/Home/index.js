@@ -99,19 +99,23 @@ class Home extends Component {
     const isDisplaying = display ? 'flex' : 'none'
 
     return (
-      <BannerContainer display={isDisplaying}>
+      <BannerContainer display={isDisplaying} data-testid="banner">
         <BannerLeftContainer>
           <LogoImage
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-            alt="website logo"
+            alt="nxt watch logo"
           />
           <BannerText>Buy Nxt Watch Premium prepaid plans with UPI</BannerText>
           <GetItNowButton type="button" onClick={this.showAlert}>
-            Get it now
+            GET IT NOW
           </GetItNowButton>
         </BannerLeftContainer>
         <BannerRightContainer>
-          <BannerCrossButton type="button" onClick={this.onCloseBanner}>
+          <BannerCrossButton
+            type="button"
+            onClick={this.onCloseBanner}
+            data-testid="close"
+          >
             <IoMdClose size="20" />
           </BannerCrossButton>
         </BannerRightContainer>
@@ -140,6 +144,7 @@ class Home extends Component {
           onClick={this.getVideosList}
           buttonBg={buttonBg}
           textColor={textColor}
+          data-testid="searchButton"
         >
           <BiSearchAlt2 />
         </SearchButton>

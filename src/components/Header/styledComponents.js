@@ -130,4 +130,10 @@ export const ConfirmButton = styled(CancelButton)`
 `
 export const LinkItem = styled(Link)`
   text-decoration: none;
+  color: ${props => props.color};
+`
+export const ThemeButton = styled.button`
+  border: none;
+  outline: none;
+  background-color: transparent;
 `

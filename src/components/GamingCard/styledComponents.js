@@ -14,6 +14,8 @@ export const GameTitle = styled.p`
   line-height: 0.8;
   font-size: 14px;
   font-weight: 500;
+  margin-top: 15px;
+  margin-bottom: 15px;
 `
 export const GameViewCount = styled(GameTitle)`
   color: #64748b;

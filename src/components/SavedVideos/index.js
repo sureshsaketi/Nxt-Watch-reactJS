@@ -56,13 +56,13 @@ const SavedVideos = () => (
             No saved videos found
           </NoSavedVideosHeading>
           <NoSavedVideosText textColor={isDarkTheme ? '#ffffff' : '##7e858e'}>
-            You can save your videos while you watching them
+            Save your videos by clicking a button
           </NoSavedVideosText>
         </NoSavedVideos>
       )
 
       return (
-        <SavedVideosPage bgColor={bgColor}>
+        <SavedVideosPage bgColor={bgColor} data-testid="savedVideos">
           <Header />
           <SavedVideosPageContainer bgColor={isDarkTheme ? '#181818' : null}>
             <NavigationBar />

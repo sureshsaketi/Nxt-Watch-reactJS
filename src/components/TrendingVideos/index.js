@@ -103,7 +103,7 @@ class TrendingVideos extends Component {
         bgColor={isDarkTheme ? '#0f0f0f' : '#f1f5f9'}
       >
         {trendingVideosList.map(eachVideo => (
-          <TrendingVideoCard video={eachVideo} key={eachVideo.id} />
+          <TrendingVideoCard video={eachVideo} key={eachVideo.name} />
         ))}
       </TrendingVideoCardsContainer>
     )
@@ -133,7 +133,7 @@ class TrendingVideos extends Component {
           const bgColor = isDarkTheme ? '#212121' : '#f9f9f9'
 
           return (
-            <TrendingPageContainer bgColor={bgColor}>
+            <TrendingPageContainer bgColor={bgColor} data-testid="trending">
               <Header />
               <TrendingVideosPageContainer
                 bgColor={isDarkTheme ? '#181818' : null}

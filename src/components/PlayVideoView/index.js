@@ -94,25 +94,30 @@ const PlayVideoView = props => {
                     <LikeButton
                       type="button"
                       onClick={onClickLikeButton}
-                      color={like ? '#2563eb' : null}
+                      color={like ? '#2563eb' : '#64748b'}
                     >
                       <BiLike size={25} /> Like
                     </LikeButton>
                     <LikeButton
                       type="button"
                       onClick={onClickDislikeButton}
-                      color={dislike ? '#2563eb' : null}
+                      color={dislike ? '#2563eb' : '#64748b'}
                     >
                       <BiDislike size={25} /> Dislike
                     </LikeButton>
-                    <LikeButton type="button" onClick={saveVideo}>
-                      <BiListPlus size={25} color={saveIconColor} /> Save
+                    <LikeButton
+                      type="button"
+                      onClick={saveVideo}
+                      color={isSaved ? '#2563eb' : '#64748b'}
+                    >
+                      <BiListPlus size={25} color={saveIconColor} />
+                      {isSaved ? 'Saved' : 'Saved'}
                     </LikeButton>
                   </ButtonsContainer>
                 </ViewsAndButtonsContainer>
                 <HorizontalLine />
                 <ChannelContainer>
-                  <ChannelImage src={profileImageUrl} alt="channel" />
+                  <ChannelImage src={profileImageUrl} alt="channel logo" />
                   <ChannelNameContainer>
                     <ChannelName
                       textColor={isDarkTheme ? '#ffffff' : '#212121'}

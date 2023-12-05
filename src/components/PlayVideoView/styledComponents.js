@@ -82,7 +82,7 @@ export const LikeButton = styled.button`
   display: flex;
   align-items: center;
   outline: none;
-  color: ${props => (props.color ? '#2563eb' : '#7e858e')};
+  color: ${props => props.color};
 
   font-size: 16px;
   font-weight: 600;

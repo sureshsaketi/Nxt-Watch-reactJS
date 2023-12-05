@@ -43,7 +43,7 @@ const VideoCard = props => {
         return (
           <LinkItem to={`/videos/${id}`}>
             <VideosListItem>
-              <ThumbnailImage src={thumbnailUrl} alt={title} />
+              <ThumbnailImage src={thumbnailUrl} alt="video thumbnail" />
               <VideoCardDetailsContainer>
                 <ProfileImageContainer>
                   <ProfileImage src={profileImageUrl} alt={name} />

@@ -94,8 +94,11 @@ class LoginForm extends Component {
           value={isShow}
           onClick={this.onToggleCheckBox}
         />
-        <ShowPasswordText textColor={isDarkTheme ? '#ffffff' : '#181818'}>
-          Show password
+        <ShowPasswordText
+          htmlFor="passwordCheckBox"
+          textColor={isDarkTheme ? '#ffffff' : '#181818'}
+        >
+          Show Password
         </ShowPasswordText>
       </CheckBoxContainer>
     )

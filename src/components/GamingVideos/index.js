@@ -91,11 +91,11 @@ class GamingVideos extends Component {
     return (
       <GamingVideoCardsContainer bgColor={isDarkTheme ? '#0f0f0f' : '#f1f5f9'}>
         {gamingVideosList.map(eachVideo => (
-          <GameVideoLink to={`/videos/${eachVideo.id}`}>
-            <GamingListItem key={eachVideo.id}>
+          <GamingListItem key={eachVideo.id}>
+            <GameVideoLink to={`/videos/${eachVideo.id}`}>
               <GamingCard video={eachVideo} />
-            </GamingListItem>
-          </GameVideoLink>
+            </GameVideoLink>
+          </GamingListItem>
         ))}
       </GamingVideoCardsContainer>
     )
@@ -124,11 +124,11 @@ class GamingVideos extends Component {
           const bgColor = isDarkTheme ? '#212121' : '#f9f9f9'
 
           return (
-            <GamingPage bgColor={bgColor}>
+            <GamingPage bgColor={bgColor} data-testid="gaming">
               <Header />
               <GamingVideosPageContainer>
                 <NavigationBar />
-                <GamingVideosContainer>
+                <GamingVideosContainer data-testid="gaming">
                   {this.renderGamingTopView(isDarkTheme)}
                   {this.renderGamingVideosView(isDarkTheme)}
                 </GamingVideosContainer>
