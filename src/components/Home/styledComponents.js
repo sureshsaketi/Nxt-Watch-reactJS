@@ -39,7 +39,6 @@ export const BannerContainer = styled.div`
   background-size: cover;
   display: ${props => props.display};
   gap: 10px;
-  margin-bottom: 20px;
   @media screen and (max-width: 575px) {
     padding: 20px;
   }
@@ -86,6 +85,7 @@ export const BannerCrossButton = styled.button`
   align-self: flex-end;
 `
 export const SearchBarContainer = styled.div`
+  margin-top: 20px;
   margin-left: 15px;
   background-color: ${props => props.bgColor};
   color: ${props => props.textColor};
@@ -108,7 +108,6 @@ export const SearchInput = styled.input`
   color: ${props => props.textColor};
   border: none;
   padding-left: 10px;
-  color: #1e293b;
   font-family: 'Roboto';
   width: 80%;
   height: 100%;
