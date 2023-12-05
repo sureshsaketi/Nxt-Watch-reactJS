@@ -25,6 +25,7 @@ export const NavItemsMobileContainer = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
+  flex-grow: 1;
   gap: 20px;
   @media screen and (min-width: 768px) {
     display: none;
@@ -136,4 +137,8 @@ export const ThemeButton = styled.button`
   border: none;
   outline: none;
   background-color: transparent;
+  font-size: 32px;
+  width: 50px;
+  height: 40px;
+  flex-grow: 1;
 `

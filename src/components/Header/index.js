@@ -78,19 +78,20 @@ const Header = props => (
       const renderNavItemsMobileView = () => (
         <NavItemsMobileContainer>
           <NavItem>
-            <LinkItem to="/">
-              <ThemeButton
-                type="button"
-                onClick={onChangeTheme}
-                data-testid="theme"
-              >
+            <ThemeButton
+              type="button"
+              onClick={onChangeTheme}
+              data-testid="theme"
+              size="20"
+            >
+              <LinkItem to="/">
                 {isDarkTheme ? (
                   <IoSunnyOutline color={isDarkTheme ? '#ffffff' : null} />
                 ) : (
                   <BsMoon color={isDarkTheme ? '#ffffff' : null} />
                 )}
-              </ThemeButton>
-            </LinkItem>
+              </LinkItem>
+            </ThemeButton>
           </NavItem>
           <NavItem>
             <Popup
@@ -152,11 +153,13 @@ const Header = props => (
         <NavItemsLargeContainer>
           <NavItem onClick={onChangeTheme}>
             <LinkItem to="/" color={isDarkTheme ? '#ffffff' : '#212121'}>
-              {isDarkTheme ? (
-                <IoSunnyOutline color={isDarkTheme ? '#ffffff' : null} />
-              ) : (
-                <BsMoon color={isDarkTheme ? '#ffffff' : null} />
-              )}
+              <ThemeButton type="button" data-testid="theme">
+                {isDarkTheme ? (
+                  <IoSunnyOutline color={isDarkTheme ? '#ffffff' : null} />
+                ) : (
+                  <BsMoon color={isDarkTheme ? '#ffffff' : null} />
+                )}
+              </ThemeButton>
             </LinkItem>
           </NavItem>
           <NavItem>
